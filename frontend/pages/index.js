@@ -11,6 +11,9 @@ const Homepage = () => {
   return (
     <>
       <h1 style={{ textAlign: 'center' }}>Homepage 🏡</h1>
+      <Link href="/blog/my-first-article">
+        <a>Go to pages/post/[pid].js</a>
+      </Link>
       <hr />
       <nav>
         <ul
