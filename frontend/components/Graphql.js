@@ -18,7 +18,7 @@ function Graphql() {
     },
     data: {
       query: `{
-        posts{data{id, attributes{title,createdAt}}}
+        posts{dataid, attributes{title,createdAt}}}
           }`,
     },
   };
