@@ -4,6 +4,7 @@ import Graphql from '../components/Graphql';
 import Layout from '../components/Layout';
 import Test from '../components/Test';
 import { useState, useEffect } from 'react';
+import Navbar from '../components/ui/Navbar';
 
 const Dashboard = () => {
   const [isLogged, setIsLogged] = useState('');
@@ -15,6 +16,7 @@ const Dashboard = () => {
   return (
     <div>
       <Layout>
+        <Navbar />
         <h1>Hello {isLogged}</h1>
         <Graphql />
         {/* <Test /> */}
