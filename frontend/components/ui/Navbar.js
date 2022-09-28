@@ -1,7 +1,8 @@
-import React from 'react';
 import { Fragment } from 'react';
-import { Popover, Transition } from '@headlessui/react';
+import { Popover, Transition, Menu } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 const navigation = [
   { name: 'Product', href: '#' },
@@ -10,42 +11,28 @@ const navigation = [
   { name: 'Company', href: '#' },
 ];
 
+const profile = [
+  { name: 'Profile', href: '#' },
+  { name: 'Dashboard', href: '/dashboard' },
+  { name: 'Sign out', href: '/auth/logout' },
+];
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ');
+}
+
 export default function Navbar() {
+  const [isLogged, setIsLogged] = useState();
+
+  useEffect(() => {
+    setIsLogged(!!localStorage.getItem('jwt'));
+  }, []);
   return (
     <div className="relative bg-gray-50 overflow-hidden">
       <div
         className="hidden sm:block sm:absolute sm:inset-y-0 sm:h-full sm:w-full"
         aria-hidden="true"
-      >
-        <div className="relative h-full max-w-7xl mx-auto">
-          <svg
-            className="absolute right-full transform translate-y-1/4 translate-x-1/4 lg:translate-x-1/2"
-            width={404}
-            height={784}
-            fill="none"
-            viewBox="0 0 404 784"
-          >
-            <rect
-              width={404}
-              height={784}
-              fill="url(#f210dbf6-a58d-4871-961e-36d5016a0f49)"
-            />
-          </svg>
-          <svg
-            className="absolute left-full transform -translate-y-3/4 -translate-x-1/4 md:-translate-y-1/2 lg:-translate-x-1/2"
-            width={404}
-            height={784}
-            fill="none"
-            viewBox="0 0 404 784"
-          >
-            <rect
-              width={404}
-              height={784}
-              fill="url(#5d0dd344-b041-4d26-bec4-8d33ea57ec9b)"
-            />
-          </svg>
-        </div>
-      </div>
+      ></div>
 
       <div className="relative pt-6 pb-12 sm:pb-12">
         <Popover>
@@ -85,14 +72,72 @@ export default function Navbar() {
                     ))}
                   </div>
                   <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
-                    <span className="inline-flex rounded-md shadow">
+                    {isLogged ? (
+                      <>
+                        <div>
+                          {/* Profile dropdown */}
+                          <Menu
+                            as="div"
+                            className="ml-3 relative flex-shrink-0"
+                          >
+                            {({ open }) => (
+                              <>
+                                <div>
+                                  <Menu.Button className="bg-indigo-600 rounded-full flex text-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-600 focus:ring-white">
+                                    <span className="sr-only">
+                                      Open user menu
+                                    </span>
+                                    <img
+                                      className="rounded-full h-8 w-8"
+                                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                      alt=""
+                                    />
+                                  </Menu.Button>
+                                </div>
+                                <Transition
+                                  show={open}
+                                  as={Fragment}
+                                  enter="transition ease-out duration-100"
+                                  enterFrom="transform opacity-0 scale-95"
+                                  enterTo="transform opacity-100 scale-100"
+                                  leave="transition ease-in duration-75"
+                                  leaveFrom="transform opacity-100 scale-100"
+                                  leaveTo="transform opacity-0 scale-95"
+                                >
+                                  <Menu.Items
+                                    static
+                                    className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                  >
+                                    {profile.map((item) => (
+                                      <Menu.Item key={item}>
+                                        {({ active }) => (
+                                          <a
+                                            href={item.href}
+                                            className={classNames(
+                                              active ? 'bg-gray-100' : '',
+                                              'block py-2 px-4 text-sm text-gray-700',
+                                            )}
+                                          >
+                                            {item.name}
+                                          </a>
+                                        )}
+                                      </Menu.Item>
+                                    ))}
+                                  </Menu.Items>
+                                </Transition>
+                              </>
+                            )}
+                          </Menu>
+                        </div>
+                      </>
+                    ) : (
                       <a
-                        href="#"
+                        href="/auth/login"
                         className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50"
                       >
                         Log in
                       </a>
-                    </span>
+                    )}
                   </div>
                 </nav>
               </div>
@@ -138,12 +183,35 @@ export default function Navbar() {
                         </a>
                       ))}
                     </div>
-                    <a
-                      href="#"
-                      className="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100"
-                    >
-                      Log in
-                    </a>
+
+                    {isLogged ? (
+                      <>
+                        <div>
+                          <a
+                            href="/auth/logout"
+                            className="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100"
+                          >
+                            Log out
+                          </a>
+                        </div>
+
+                        <div>
+                          <a
+                            href="/dashboard"
+                            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                          >
+                            Dashboard
+                          </a>
+                        </div>
+                      </>
+                    ) : (
+                      <a
+                        href="/auth/login"
+                        className="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100"
+                      >
+                        Log in
+                      </a>
+                    )}
                   </div>
                 </Popover.Panel>
               </Transition>

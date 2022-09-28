@@ -1,10 +1,6 @@
 import React from 'react';
-import Admin from '../components/layouts/Admin';
-import Graphql from '../components/Graphql';
-import Layout from '../components/Layout';
-import Test from '../components/Test';
+import Admin_Layout from '../components/layouts/Admin_Layout';
 import { useState, useEffect } from 'react';
-import Navbar from '../components/ui/Navbar';
 
 const Dashboard = () => {
   const [isLogged, setIsLogged] = useState('');
@@ -15,12 +11,11 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Layout>
-        <Navbar />
+      <Admin_Layout>
         <h1>Hello {isLogged}</h1>
-        <Graphql />
+
         {/* <Test /> */}
-      </Layout>
+      </Admin_Layout>
     </div>
   );
 };

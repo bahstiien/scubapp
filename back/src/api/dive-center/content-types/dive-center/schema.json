@@ -15,9 +15,6 @@
     "name": {
       "type": "string"
     },
-    "Presentation": {
-      "type": "richtext"
-    },
     "summary": {
       "type": "string"
     },
@@ -36,7 +33,7 @@
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
     },
-    "contact": {
+    "mail": {
       "type": "email"
     },
     "mainPhoto": {

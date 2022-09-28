@@ -34,7 +34,7 @@ function Graphql() {
   return (
     <div>
       {post.data.posts.data.map((pos) => (
-        <h1>{pos.attributes.title}</h1>
+        <h1 key={pos.id}>{pos.attributes.title}</h1>
       ))}
     </div>
   );

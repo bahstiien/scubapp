@@ -69,32 +69,30 @@ const Test = () => {
         name: '',
         manager: '',
         CurrentlyOpen: '',
-        presentation: '',
         summary: '',
-        startPrice: '',
+        StartPrice: '',
         telephone: '',
         lat: '',
         lng: '',
-        city: '',
-        address: '',
-        zipCode: '',
+        City: '',
+        adresse: '',
+        // // zipCode: '',
         mail: '',
       }}
       validationSchema={Yup.object({
-        name: Yup.string()
-          .max(15, 'Must be 15 characters or less')
-          .required('Required'),
+        name: Yup.string(),
+        // .max(15, 'Must be 15 characters or less')
+        // .required('Required'),
         manager: Yup.number(),
         CurrentlyOpen: Yup.boolean(),
-        presentation: Yup.string(),
         summary: Yup.string(),
-        startPrice: Yup.number(),
+        StartPrice: Yup.number(),
         telephone: Yup.string(),
         lat: Yup.number(),
         lng: Yup.number(),
-        city: Yup.string(),
-        address: Yup.string(),
-        zipCode: Yup.string(),
+        City: Yup.string(),
+        adresse: Yup.string(),
+        // // zipCode: Yup.string(),
         mail: Yup.string().email('Invalid email address').required('Required'),
       })}
       onSubmit={(values) => {
@@ -117,13 +115,32 @@ const Test = () => {
         <Field name="name" type="text" />
         <ErrorMessage name="name" />
 
-        {/* <label htmlFor="lastName">Last Name</label>
-        <Field name="lastName" type="text" />
-        <ErrorMessage name="lastName" /> */}
-        {/* 
-        <label htmlFor="email">Email Address</label>
-        <Field name="email" type="email" />
-        <ErrorMessage name="email" /> */}
+        <label htmlFor="summary">summary</label>
+        <Field name="summary" type="text" />
+
+        <label htmlFor="telephone">telephone</label>
+        <Field name="telephone" type="text" />
+
+        <label htmlFor="City">city</label>
+        <Field name="City" type="text" />
+
+        <label htmlFor="adresse">adresse</label>
+        <Field name="adresse" type="text" />
+
+        <label htmlFor="StartPrice">StartPrice</label>
+        <Field name="StartPrice" type="number" />
+
+        <label htmlFor="lat">lat</label>
+        <Field name="lat" type="number" />
+
+        <label htmlFor="lng">lng</label>
+        <Field name="lng" type="number" />
+
+        {/* <label htmlFor="zipCode">zipCode</label>
+        <Field name="zipCode" type="text" /> */}
+
+        <label htmlFor="mail">mail</label>
+        <Field name="mail" type="text" />
 
         <Field name="manager" as="select" className="my-select">
           {manager.data.attributes.users.data.map((m) => (

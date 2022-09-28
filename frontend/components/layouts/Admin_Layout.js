@@ -1,13 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import Header_Dashboard from '../admin/Header_Dashboard';
 
 function Layout({ children }) {
   const [post, setPost] = React.useState(null);
   const [isLogged, setIsLogged] = useState('');
   const [user, setUser] = useState('');
 
-  const adminRole = 4;
+  const adminRole = 5;
   let isAdmin = false;
 
   useEffect(() => {
@@ -53,29 +54,19 @@ function Layout({ children }) {
 
   const currentRole = parseInt(post.id);
 
-  console.log(user);
-  if (currentRole === adminRole) {
+  if (currentRole === 5) {
     isAdmin = true;
   }
 
-  console.log('isAdmin', isAdmin);
-  //   console.log('id of user ' + user);
-  //   console.log('id of admin ' + adminRole);
-  //   console.log(
-  //     'current role ' +
-  //       post.data.usersPermissionsUser.data.attributes.role.data.id,
-  //   );
-  //   {
-  //     post.data.usersPermissionsUser.map((pos) => console.log('hello'));
-  //   }
-
-  //   if (currentRole === adminRole) {
-  //     setisAdmin(true);
-  //   }
-
-  // console.log('isAdmin ' + isAdmin);
-
-  return <>{isAdmin ? <main>{children}</main> : <p> No way</p>}</>;
+  return (
+    <>
+      {isAdmin ? (
+        <Header_Dashboard>{children}</Header_Dashboard>
+      ) : (
+        <p> No way</p>
+      )}
+    </>
+  );
 }
 
 export default Layout;

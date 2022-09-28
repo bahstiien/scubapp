@@ -6,27 +6,25 @@ import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 import AllClubs from './AllClubs';
 import DivingCenterList from './DivingCenterList';
 import AddCenter from './addCenter';
+import Footer from '../ui/Footer';
 
-const navigation = ['Dashboard', 'Team', 'Projects', 'Calendar', 'Reports'];
+const navigation = ['Dashboard', 'Center', 'Sessions', 'Users', 'Analytics'];
 const profile = ['Your Profile', 'Settings', 'Sign out'];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const Header = () => {
+const Header = ({ children, title }) => {
   return (
     <div>
-      <div className="min-h-screen bg-gray-100">
-        <div className="bg-indigo-600 pb-32">
-          <Disclosure
-            as="nav"
-            className="bg-indigo-600 border-b border-indigo-300 border-opacity-25 lg:border-none"
-          >
+      <div className="min-h-screen bg-grayLight">
+        <div className="bg-blueMarin pb-32">
+          <Disclosure as="nav" className="bg-blueMarin">
             {({ open }) => (
               <>
                 <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
-                  <div className="relative h-16 flex items-center justify-between lg:border-b lg:border-indigo-400 lg:border-opacity-25">
+                  <div className="relative h-16 flex items-center justify-between">
                     <div className="px-2 flex items-center lg:px-0">
                       <div className="flex-shrink-0">
                         <img
@@ -43,7 +41,7 @@ const Header = () => {
                                 {/* Current: "bg-indigo-700 text-white", Default: "text-white hover:bg-indigo-500 hover:bg-opacity-75" */}
                                 <a
                                   href="#"
-                                  className="bg-indigo-700 text-white rounded-md py-2 px-3 text-sm font-medium"
+                                  className="bg-blueDark text-white rounded-md py-2 px-3 text-sm font-medium"
                                 >
                                   {item}
                                 </a>
@@ -52,7 +50,7 @@ const Header = () => {
                               <a
                                 key={item}
                                 href="#"
-                                className="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium"
+                                className="text-white hover:bg-blueDark hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium"
                               >
                                 {item}
                               </a>
@@ -223,7 +221,7 @@ const Header = () => {
           </Disclosure>
           <header className="py-10">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h1 className="text-3xl font-bold text-white">Dashboard</h1>
+              <h1 className="text-3xl font-bold text-white">{title}</h1>
             </div>
           </header>
         </div>
@@ -231,12 +229,13 @@ const Header = () => {
         <main className="-mt-32">
           <div className="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
             <div className="bg-white rounded-lg shadow px-5 py-6 sm:px-6">
-              <AddCenter />
+              {children}
             </div>
             {/* /End replace */}
           </div>
         </main>
       </div>
+      <Footer />
     </div>
   );
 };

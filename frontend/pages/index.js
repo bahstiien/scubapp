@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Navbar from '../components/ui/Navbar.js';
+import Actions from '../components/homepage/Actions.js';
+import BlogSection from '../components/homepage/BlogSection.js';
+import UI_Layout from '../components/layouts/UI_Layout.js';
 
 const Homepage = () => {
   const [isLogged, setIsLogged] = useState();
@@ -10,11 +14,11 @@ const Homepage = () => {
 
   return (
     <>
-      <h1 style={{ textAlign: 'center' }}>Homepage 🏡</h1>
-      <Link href="/blog/my-first-article">
-        <a>Go to pages/post/[pid].js</a>
-      </Link>
-      <hr />
+      <UI_Layout>
+        <Actions />
+        <BlogSection />
+      </UI_Layout>
+
       <nav>
         <ul
           style={{ display: 'flex', columnGap: '20px', justifyContent: 'end' }}
