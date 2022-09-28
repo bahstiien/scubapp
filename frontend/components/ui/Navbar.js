@@ -1,91 +1,156 @@
 import React from 'react';
+import { Fragment } from 'react';
+import { Popover, Transition } from '@headlessui/react';
+import { MenuIcon, XIcon } from '@heroicons/react/outline';
 
-const Navbar = () => {
+const navigation = [
+  { name: 'Product', href: '#' },
+  { name: 'Features', href: '#' },
+  { name: 'Marketplace', href: '#' },
+  { name: 'Company', href: '#' },
+];
+
+export default function Navbar() {
   return (
-    <div>
-      <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
-        <div className="container flex flex-wrap justify-between items-center mx-auto">
-          <a href="https://flowbite.com/" className="flex items-center">
-            <img
-              src="https://flowbite.com/docs/images/logo.svg"
-              className="mr-3 h-6 sm:h-9"
-              alt="Flowbite Logo"
-            />
-            <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-              Flowbite
-            </span>
-          </a>
-          <button
-            data-collapse-toggle="navbar-default"
-            type="button"
-            className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            aria-controls="navbar-default"
-            aria-expanded="false"
+    <div className="relative bg-gray-50 overflow-hidden">
+      <div
+        className="hidden sm:block sm:absolute sm:inset-y-0 sm:h-full sm:w-full"
+        aria-hidden="true"
+      >
+        <div className="relative h-full max-w-7xl mx-auto">
+          <svg
+            className="absolute right-full transform translate-y-1/4 translate-x-1/4 lg:translate-x-1/2"
+            width={404}
+            height={784}
+            fill="none"
+            viewBox="0 0 404 784"
           >
-            <span className="sr-only">Open main menu</span>
-            <svg
-              className="w-6 h-6"
-              aria-hidden="true"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-          </button>
-          <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-            <ul className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                  aria-current="page"
-                >
-                  Home
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                >
-                  About
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                >
-                  Services
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                >
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                >
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
+            <rect
+              width={404}
+              height={784}
+              fill="url(#f210dbf6-a58d-4871-961e-36d5016a0f49)"
+            />
+          </svg>
+          <svg
+            className="absolute left-full transform -translate-y-3/4 -translate-x-1/4 md:-translate-y-1/2 lg:-translate-x-1/2"
+            width={404}
+            height={784}
+            fill="none"
+            viewBox="0 0 404 784"
+          >
+            <rect
+              width={404}
+              height={784}
+              fill="url(#5d0dd344-b041-4d26-bec4-8d33ea57ec9b)"
+            />
+          </svg>
         </div>
-      </nav>
+      </div>
+
+      <div className="relative pt-6 pb-12 sm:pb-12">
+        <Popover>
+          {({ open }) => (
+            <>
+              <div className="max-w-7xl mx-auto px-4 sm:px-6">
+                <nav
+                  className="relative flex items-center justify-between sm:h-10 md:justify-center"
+                  aria-label="Global"
+                >
+                  <div className="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0">
+                    <div className="flex items-center justify-between w-full md:w-auto">
+                      <a href="#">
+                        <span className="sr-only">Workflow</span>
+                        <img
+                          className="h-8 w-auto sm:h-10"
+                          src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                          alt=""
+                        />
+                      </a>
+                      <div className="-mr-2 flex items-center md:hidden">
+                        <Popover.Button className="bg-gray-50 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                          <span className="sr-only">Open main menu</span>
+                        </Popover.Button>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="hidden md:flex md:space-x-10">
+                    {navigation.map((item) => (
+                      <a
+                        key={item.name}
+                        href={item.href}
+                        className="font-medium text-gray-500 hover:text-gray-900"
+                      >
+                        {item.name}
+                      </a>
+                    ))}
+                  </div>
+                  <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
+                    <span className="inline-flex rounded-md shadow">
+                      <a
+                        href="#"
+                        className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50"
+                      >
+                        Log in
+                      </a>
+                    </span>
+                  </div>
+                </nav>
+              </div>
+
+              <Transition
+                show={open}
+                as={Fragment}
+                enter="duration-150 ease-out"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="duration-100 ease-in"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Popover.Panel
+                  focus
+                  static
+                  className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
+                >
+                  <div className="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
+                    <div className="px-5 pt-4 flex items-center justify-between">
+                      <div>
+                        <img
+                          className="h-8 w-auto"
+                          src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                          alt=""
+                        />
+                      </div>
+                      <div className="-mr-2">
+                        <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                          <span className="sr-only">Close menu</span>
+                        </Popover.Button>
+                      </div>
+                    </div>
+                    <div className="px-2 pt-2 pb-3">
+                      {navigation.map((item) => (
+                        <a
+                          key={item.name}
+                          href={item.href}
+                          className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                        >
+                          {item.name}
+                        </a>
+                      ))}
+                    </div>
+                    <a
+                      href="#"
+                      className="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100"
+                    >
+                      Log in
+                    </a>
+                  </div>
+                </Popover.Panel>
+              </Transition>
+            </>
+          )}
+        </Popover>
+      </div>
     </div>
   );
-};
-
-export default Navbar;
+}

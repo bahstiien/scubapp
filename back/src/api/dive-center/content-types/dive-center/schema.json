@@ -1,0 +1,69 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dive_centers",
+  "info": {
+    "singularName": "dive-center",
+    "pluralName": "dive-centers",
+    "displayName": "DiveCenter",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "Presentation": {
+      "type": "richtext"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "StartPrice": {
+      "type": "integer"
+    },
+    "CurrentlyOpen": {
+      "type": "boolean"
+    },
+    "manager": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "contact": {
+      "type": "email"
+    },
+    "mainPhoto": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "telephone": {
+      "type": "biginteger"
+    },
+    "lat": {
+      "type": "float"
+    },
+    "lng": {
+      "type": "float"
+    },
+    "City": {
+      "type": "string"
+    },
+    "adresse": {
+      "type": "string"
+    }
+  }
+}

@@ -36,14 +36,9 @@
         "images"
       ]
     },
-    "Author": {
+    "tag": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "admin::user"
-    },
-    "tags": {
-      "type": "relation",
-      "relation": "oneToMany",
       "target": "api::tag.tag"
     },
     "SEO": {
@@ -51,6 +46,17 @@
       "type": "component",
       "repeatable": false,
       "component": "seo.seo"
+    },
+    "summary": {
+      "type": "text"
+    },
+    "timeToRead": {
+      "type": "integer"
+    },
+    "editor": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }

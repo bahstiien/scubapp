@@ -1,5 +1,5 @@
 import React from 'react';
-import Admin from '../components/Admin';
+import Admin from '../components/layouts/Admin';
 import Graphql from '../components/Graphql';
 import Layout from '../components/Layout';
 import Test from '../components/Test';

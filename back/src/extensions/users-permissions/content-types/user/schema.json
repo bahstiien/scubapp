@@ -63,10 +63,16 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "status": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::status.status"
+    "MainPhoto": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": false
     }
   }
 }
