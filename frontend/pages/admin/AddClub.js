@@ -7,7 +7,6 @@ const AddClub = () => {
     <div>
       <Header_Dashboard title="Ajout d'un nouveau centre">
         <AddCenter />
-        <h1> NOUVEA</h1>
       </Header_Dashboard>
     </div>
   );

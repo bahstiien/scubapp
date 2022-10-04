@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { SearchIcon } from '@heroicons/react/solid';
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
-import AllClubs from './AllClubs';
+import AllClubs from './ClubsDetails';
 import DivingCenterList from './DivingCenterList';
 import AddCenter from './addCenter';
 import Footer from '../ui/Footer';

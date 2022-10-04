@@ -1,22 +1,44 @@
-import React from 'react';
-
-const people = [
-  {
-    name: 'Jane Cooper',
-    title: 'Regional Paradigm Technician',
-    role: 'Admin',
-    email: 'jane.cooper@example.com',
-  },
-  {
-    name: 'Cody Fisher',
-    title: 'Product Directives Officer',
-    role: 'Owner',
-    email: 'cody.fisher@example.com',
-  },
-  // More people...
-];
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const DivingCenterList = () => {
+  const [clubs, setClubs] = React.useState(null);
+  const options = {
+    method: 'POST',
+    url: 'http://localhost:1337/graphql',
+
+    data: {
+      query: `{
+        diveCenters{
+          data{
+            id,
+            attributes{
+              name, 
+              CurrentlyOpen, 
+              City, 
+              manager{
+                data{
+                  attributes{
+                    username,
+                    email
+                  }
+                }
+              }
+            }
+          }
+        }  
+      }`,
+    },
+  };
+
+  React.useEffect(() => {
+    axios.request(options).then((response) => {
+      setClubs(response.data.data.diveCenters);
+    });
+  }, []);
+
+  if (!clubs) return null;
+
   return (
     <div>
       <div className="flex flex-col">
@@ -30,25 +52,38 @@ const DivingCenterList = () => {
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
-                      Name
+                      id
+                    </th>
+
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Name of the dive center
                     </th>
                     <th
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
-                      Title
+                      City
                     </th>
                     <th
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
-                      Email
+                      Manager
                     </th>
                     <th
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
-                      Role
+                      Email of the manager
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      StATUS
                     </th>
                     <th scope="col" className="relative px-6 py-3">
                       <span className="sr-only">Edit</span>
@@ -56,24 +91,38 @@ const DivingCenterList = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {people.map((person, personIdx) => (
+                  {clubs.data.map((p, personIdx) => (
                     <tr
-                      key={person.email}
+                      key={p.id}
                       className={
                         personIdx % 2 === 0 ? 'bg-white' : 'bg-gray-50'
                       }
                     >
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {person.name}
+                        {p.id}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        {p.attributes.name}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {person.title}
+                        {p.attributes.City}
+                      </td>
+
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {p.attributes.manager.data.attributes.username}
+                      </td>
+
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {p.attributes.manager.data.attributes.email}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {person.email}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {person.role}
+                        {p.attributes.CurrentlyOpen}
+
+                        {p.attributes.CurrentlyOpen == true ? (
+                          <p> Open </p>
+                        ) : (
+                          <p> Close </p>
+                        )}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <a

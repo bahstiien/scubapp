@@ -8,16 +8,16 @@ function Layout({ children }) {
   const [isLogged, setIsLogged] = useState('');
   const [user, setUser] = useState('');
 
-  const adminRole = 5;
+  const adminRole = 3;
   let isAdmin = false;
 
   useEffect(() => {
     setIsLogged(localStorage.getItem('jwt'));
+    setUser(parseInt(localStorage.getItem('id')));
   }, []);
 
-  useEffect(() => {
-    setUser(localStorage.getItem('id'));
-  }, []);
+  console.log(user);
+  console.log(isLogged);
 
   const options = {
     method: 'POST',
@@ -27,7 +27,7 @@ function Layout({ children }) {
     },
     data: {
       query: `{
-        usersPermissionsUser(id:8){
+        usersPermissionsUser(id:14){
             data{
                 attributes{
                 role{
@@ -42,7 +42,7 @@ function Layout({ children }) {
     },
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     axios.request(options).then((response) => {
       setPost(
         response.data.data.usersPermissionsUser.data.attributes.role.data,
@@ -54,7 +54,7 @@ function Layout({ children }) {
 
   const currentRole = parseInt(post.id);
 
-  if (currentRole === 5) {
+  if (currentRole === adminRole) {
     isAdmin = true;
   }
 

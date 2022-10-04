@@ -36,7 +36,7 @@
     "mail": {
       "type": "email"
     },
-    "mainPhoto": {
+    "mainCover": {
       "type": "media",
       "multiple": true,
       "required": false,

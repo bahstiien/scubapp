@@ -1,0 +1,35 @@
+
+.label_form {
+    display: block;
+    text-transform: uppercase;
+    color: rgb(63 63 70);
+    font-size: 0.8rem ;
+	font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.error_form {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+.input_form{
+    display: block; 
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem; 
+    padding-left: 1rem;
+    padding-right: 1rem; 
+    background-color: #E5E7EB; 
+    color: #374151; 
+    line-height: 1.25; 
+    width: 100%; 
+    border-radius: 0.25rem; 
+    border-width: 1px; 
+    border-color: #E5E7EB; 
+    appearance: none; 
+}
+
+
+/* className="appearance-none    rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" */
