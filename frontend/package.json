@@ -11,6 +11,7 @@
     "@headlessui/react": "^1.7.2",
     "@heroicons/react": "^1.0.6",
     "@react-google-maps/api": "^2.13.1",
+    "antd": "^4.23.4",
     "axios": "^0.24.0",
     "date-fns": "^2.29.3",
     "formik": "^2.2.9",

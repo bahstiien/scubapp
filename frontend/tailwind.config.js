@@ -14,7 +14,13 @@ module.exports = {
         darkLight: '#191919',
         grayLight: '#EEEEEE',
       },
+      fontFamily: {
+        rubik: ['Rubik', 'sans-serif'],
+        Oswald: ['Oswald', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
+        adelia: ['ADELIA', 'cursive'],
+      },
     },
+    plugins: [],
   },
-  plugins: [],
 };

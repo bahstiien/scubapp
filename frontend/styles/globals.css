@@ -1,6 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@font-face {
+  font-family: "rubik";
+  src: url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+}
+
+
+p {
+  font-family: 'Rubik', sans-serif;
+  color: darkgreen;
+}
+
+h2{
+  font-family: 'Rubik', sans-serif;
+  font-size: 3rem;
+  color: #041562
+}
+
 
 html,
 body {

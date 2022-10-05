@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import BadgeError from '../ui/BadgeError';
+import BadgeGood from '../ui/BadgeGood';
 
 const DivingCenterList = () => {
   const [clubs, setClubs] = React.useState(null);
@@ -14,6 +16,7 @@ const DivingCenterList = () => {
             id,
             attributes{
               name, 
+              slug,
               CurrentlyOpen, 
               City, 
               manager{
@@ -119,14 +122,14 @@ const DivingCenterList = () => {
                         {p.attributes.CurrentlyOpen}
 
                         {p.attributes.CurrentlyOpen == true ? (
-                          <p> Open </p>
+                          <BadgeGood label="Open" />
                         ) : (
-                          <p> Close </p>
+                          <BadgeError label="Close" />
                         )}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <a
-                          href="#"
+                          href={'/admin/diving-center/' + p.attributes.slug}
                           className="text-indigo-600 hover:text-indigo-900"
                         >
                           Edit
