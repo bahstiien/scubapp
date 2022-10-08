@@ -26,7 +26,9 @@ services:
       dockerfile: ./docker/frontend/${ENVIRONMENT}/Dockerfile
       args:
         - NODE_ENV=${ENVIRONMENT}
-    restart: unless-stopped
+    restart: always
+    ports:
+      - "3000:3000"
     networks:
       - internal
     volumes:
@@ -45,7 +47,9 @@ services:
       dockerfile: ./docker/backend/${ENVIRONMENT}/Dockerfile
       args:
         - NODE_ENV=${ENVIRONMENT}
-    restart: unless-stopped
+    restart: always
+    ports:
+      - '1337:1337'
     env_file: .env
     environment:
       DATABASE_CLIENT: ${DATABASE_CLIENT}
@@ -65,14 +69,12 @@ services:
       - internal
     depends_on:
       - postgres
-    ports:
-      - "1337:1337"
 
   postgres:
     image: postgres:12.0-alpine
     container_name: ${PROJECT_SLUG}_postgres
     platform: linux/amd64
-    restart: unless-stopped
+    restart: always
     env_file: .env
     environment:
       POSTGRES_USER: ${DATABASE_USERNAME}

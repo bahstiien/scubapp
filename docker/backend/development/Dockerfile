@@ -10,21 +10,19 @@ WORKDIR /app
 
 # Copy package.json and package-lock.json
 # to the /app working directory
-COPY ./backend/package*.json ./backend/yarn.lock /app/
+COPY ./backend/package*.json ./backend/package-lock.json /app/
 COPY ./.env /app/
 
 ENV PATH /app/node_modules/.bin:$PATH
 
 # Install dependencies in /app
-RUN yarn config set network-timeout 600000 -g && yarn install
+RUN npm config set network-timeout 600000 -g && npm install
 
 # Copy the rest of our Strapi folder into /app
 COPY ./backend /app
 
-EXPOSE 1337
-
 # Build Strapi admin
-RUN yarn build
+RUN npm build
 
 # Run yarn dev, as we would via the command line 
-CMD ["yarn", "develop"]
+CMD ["npm", "run", "develop"]
